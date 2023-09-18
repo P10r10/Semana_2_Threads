@@ -23,7 +23,7 @@ class NameThread extends Thread {
     }
 
     public static void main(String[] args) {
-        new NameThread(1).run();
-        new NameThread(2).run();
+        new NameThread(1).start();
+        new NameThread(2).start();
     }
 }
