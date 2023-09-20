@@ -16,14 +16,24 @@ class NameThread extends Thread {
             System.out.println("Id: " + id);
             try {
                 Thread.sleep(sleepDuration);
-            } catch (Exception e) {
-                System.out.println("We will deal with this later!");
+            } catch (InterruptedException e) {
+                System.out.println("Thread id: " + id + " interrupted!");
+                System.exit(0);
             }
         }
     }
 
-    public static void main(String[] args) {
-        new NameThread(1).start();
-        new NameThread(2).start();
+    public static void main(String[] args) throws InterruptedException {
+        NameThread one = new NameThread(1);
+        NameThread two = new NameThread(2);
+        one.start();
+        two.start();
+        // one.join();
+        // two.join();
+        Thread.sleep(4000);
+        one.interrupt();
+        two.interrupt();
+        System.out.println("Main done. All done!");
+
     }
 }
