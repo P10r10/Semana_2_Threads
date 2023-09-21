@@ -1,14 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Window {
+public class HorseWindow {
 
     private JFrame frame;
     private JTextField tf1 = new JTextField("30");
     private JTextField tf2 = new JTextField("30");
     private JTextField tf3 = new JTextField("30");
 
-    public Window() {
+    public HorseWindow() {
         frame = new JFrame("Horse race");
         JPanel jpUp = new JPanel();
         JPanel jpDown = new JPanel();
