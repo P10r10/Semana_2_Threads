@@ -5,14 +5,17 @@ public class Car extends Observable implements Runnable {
 	private int id;
 	private int limit;
 	private int position = 0;
+	private Thread mainThread;
 
-	public Car(int id, int limit) {
+	public Car(int id, int limit, Thread mainThread) {
 		super();
 		this.id = id;
 		this.limit = limit;
+		this.mainThread = mainThread;
 	}
 	@Override
 	public void run() {
+		System.out.println(Thread.currentThread().getName());
 		try {
 			while (position < limit - 1) {
 				Thread.sleep(new Random().nextInt(100));
@@ -20,8 +23,10 @@ public class Car extends Observable implements Runnable {
 				setChanged();
 				notifyObservers();
 			}
-			} catch (InterruptedException e) {
-			}
+			mainThread.interrupt();
+
+		} catch (InterruptedException e) {
+		}
 	}
 
 	public int getId() {
