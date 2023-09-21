@@ -12,7 +12,7 @@ public class Horse extends Thread {
     }
 
     public void run() {
-        int sleep = new Random().nextInt(801) + 200;
+        int sleep = new Random().nextInt(800) + 200;
         while (movements > 0) {
             movements--;
             tf.setText(Integer.toString(movements));
