@@ -1,21 +1,24 @@
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.util.ArrayList;
 
 public class DemoTrack {
 
 	public static void main(String[] args) {
-		// GUI usage example... Change to suit exercise
-		JFrame frame = new JFrame("Demo Track");
-		Track track = new Track(3, 100);
-		Car c0 = new Car(0, 100);
-		Car c1 = new Car(1, 100);
-		Car c2 = new Car(2, 100);
-		c1.addObserver(track);
-		c2.addObserver(track);
-		c0.addObserver(track);
+		final int CARS = 10; // number of total cars
+		ArrayList<Car> cars = new ArrayList<>();
 
+		JFrame frame = new JFrame("Demo Track");
+		Track track = new Track(CARS, 100);
+		for (int i = 0; i < CARS; i++) { // adds every car
+			cars.add(new Car(i, 100));
+			cars.get(i).addObserver(track);
+		}
 		frame.add(track);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setSize(500, 300);
 		frame.setVisible(true);
+		for (int i = 0; i < CARS; i++) {
+			new Thread(cars.get(i)).start();
+		}
 	}
-
 }

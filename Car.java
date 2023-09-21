@@ -1,4 +1,5 @@
 import java.util.Observable;
+import java.util.Random;
 
 public class Car extends Observable implements Runnable {
 	private int id;
@@ -10,9 +11,17 @@ public class Car extends Observable implements Runnable {
 		this.id = id;
 		this.limit = limit;
 	}
-
+	@Override
 	public void run() {
-		// TODO
+		try {
+			while (position < limit - 1) {
+				Thread.sleep(new Random().nextInt(100));
+				position += 1;
+				setChanged();
+				notifyObservers();
+			}
+			} catch (InterruptedException e) {
+			}
 	}
 
 	public int getId() {
