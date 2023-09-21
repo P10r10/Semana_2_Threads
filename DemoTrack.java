@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class DemoTrack {
 
 	public static void main(String[] args) {
-		final int CARS = 10; // number of total cars
+		final int CARS = 3; // number of total cars
 		ArrayList<Car> cars = new ArrayList<>();
 		ArrayList<Thread> threads = new ArrayList<>();
 
