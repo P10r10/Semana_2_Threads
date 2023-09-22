@@ -5,21 +5,22 @@ public class ThreadA extends Thread {
     private long count = 0;
     private final Random rnb;
 
-    public ThreadA() {
+    public ThreadA(String name) {
+        super(name);
         count = 0;
         rnb = new Random();
     }
 
     @Override
     public void run() {
-        try {
-            while (true) {
-                System.out.println(rnb.nextInt(9) + 1);
-                count++;
-                Thread.sleep(500);
-            }
-        } catch (InterruptedException ignored) {
-
+        while (!interrupted()) {
+            System.out.println(rnb.nextInt(9000) + 1000);
+            count++;
         }
+        System.out.println(Thread.currentThread().getName() + " stopped!");
+    }
+
+    public long getCount() {
+        return count;
     }
 }

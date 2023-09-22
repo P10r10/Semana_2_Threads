@@ -1,10 +1,15 @@
 public class RandomApp {
-    public static void main(String[] args) {
-        new RamdomWindow();
+    public static void main(String[] args) throws InterruptedException {
+        ThreadA ta = new ThreadA("Thread A");
+        ThreadB tb = new ThreadB("Thread B");
+        new RamdomWindow(ta, tb);
 
-        ThreadA ta = new ThreadA();
-//        ThreadA rg2 = new ThreadA(1000, 9999);
         ta.start();
-//        rg2.start();
+        tb.start();
+        ta.join();
+        tb.join();
+
+        System.out.println("Thread A yielded " + ta.getCount() + " numbers.");
+        System.out.println("Thread B yielded " + tb.getCount() + " numbers.");
     }
 }
